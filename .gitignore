@@ -1,0 +1,7 @@
+node_modules/
+downloads/
+jspm_packages/
+
+.next
+.idea/
+.vscode/settings.json
