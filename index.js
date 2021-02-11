@@ -8,7 +8,7 @@ const cron = require('node-cron');
 
 const scraper = require("./scrape");
 
-app.get('download-file', (req, res) => {
+app.get('/download-file', (req, res) => {
     const filePath = path.join(__dirname, scraper.gpxFile);
 
     if (fs.existsSync(filePath)) {
