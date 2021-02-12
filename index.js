@@ -8,6 +8,9 @@ const cron = require('node-cron');
 
 const scraper = require("./scrape");
 
+/**
+ * Serve file with gpx points
+ */
 app.get('/download-file', (req, res) => {
     const filePath = path.join(__dirname, scraper.gpxFile);
 
@@ -23,6 +26,9 @@ app.get('/download-file', (req, res) => {
     }
 });
 
+/**
+ * Manually check if files are outdated
+ */
 app.get('/update', (req, res) => {
     scraper.checkForDate(function (success, error) {
         if (success) {
@@ -35,6 +41,9 @@ app.get('/update', (req, res) => {
     });
 });
 
+/**
+ * Check if files are outdated, every week on sunday at 00:00
+ */
 cron.schedule('0 0 * * 0', function () {
     scraper.checkForDate(function (success, error) {
         if (success) {
@@ -45,6 +54,9 @@ cron.schedule('0 0 * * 0', function () {
     });
 });
 
+/**
+ * Expose app on specified port
+ */
 app.listen(port, () => {
     console.log(`STKP backend listening on port ${port}!`);
 });
