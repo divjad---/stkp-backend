@@ -14,6 +14,9 @@
     "axios": "*",
     "cheerio": "*",
     "express": "*",
-    "node-cron": "*"
+    "node-cron": "*",
+    "nodemon": "^2.0.7",
+    "request": "^2.88.2",
+    "save": "^2.4.0"
   }
 }
