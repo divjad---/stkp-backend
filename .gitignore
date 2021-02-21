@@ -5,3 +5,4 @@ jspm_packages/
 .next
 .idea/
 .vscode/settings.json
+package-lock.json

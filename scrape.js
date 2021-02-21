@@ -90,11 +90,17 @@ const checkForDate = async function checkForDate(callback) {
 	try {
 		// update "etape" gpx file
 		await updateET(latest_et_link, stkp_date_number);
+		console.log("ET successfuly updated");
 
 		// update "kontrolne tocke" gpx file
 		// 20160615 is the latest update date for KT files on STKP site
 		await updateKT(latest_kt_link, 20160615);
+		console.log("KT successfuly updated");
+
 		await createZip(get_latest_date());
+		console.log("ZIP successfuly updated");
+
+
 		callback(true);
 	} catch (error) {
 		callback(false, error);
@@ -202,6 +208,7 @@ function updateET(link, stkp_latest_date) {
 					}
 				});
 			} else {
+				// files up to date already
 				resolve(true);
 			}
 
@@ -251,6 +258,7 @@ function updateKT(link, stkp_latest_date) {
 				});
 					
 			}else {
+				// files up to date already
 				resolve(true);
 			}
 		} catch (error) {
@@ -274,7 +282,7 @@ function createZip(latest_date) {
 			// create a date number from the passed date string
 			const latest_date_number = parseInt(latest_date.split("-"));
 			// get date number from the ZIP file name
-			const zip_date_number = get_date("ZIP");
+			const zip_date_number = get_date_number("ZIP");
 			// if zip file doesnt exist or is outdated, proceed
 			if(!zip_date_number || latest_date_number > zip_date_number) {
 				console.log("Updating Zip");
@@ -288,6 +296,9 @@ function createZip(latest_date) {
 				zip.addLocalFile(dl_location + get_full_filename("KT"));
 				zip.writeZip(dl_location + "ZIP_" + latest_date + ".zip");
 				console.log("Done writing Zip\n");
+				resolve(true);
+			} else {
+				// files up to date already
 				resolve(true);
 			}
 			
