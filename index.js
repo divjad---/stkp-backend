@@ -12,24 +12,7 @@ const scraper = require("./scrape");
  * Accepts a query parameter
  */
 app.get('/download', (req, res) => {
-
-	var filename;
-	// http://localhost:3000/update?type=zip
-	if (req.query && req.query.type) {
-		switch (req.query.type){
-			case "et":
-				filename = scraper.get_full_filename("ET");
-				break;
-			case "kt":
-				filename = scraper.get_full_filename("KT");
-				break;
-			case "zip":
-				filename = scraper.get_full_filename("ZIP");
-				break;
-			default:
-				res.status(400).end("Wrong parameter value");
-		}
-	}
+	filename = scraper.get_full_filename("ZIP");
     const filePath = path.join(__dirname, scraper.dl_location + filename);
 
     if (fs.existsSync(filePath)) {

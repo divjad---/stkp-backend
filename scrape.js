@@ -141,6 +141,7 @@ const checkForDate = async function checkForDate(callback) {
 			// finnaly write the file as json
 			fs.writeFileSync(dl_location + 'etape.json', JSON.stringify(etape));
 			console.log("etape.json created");
+			// zip the entire downloads directory
 			const zip_success = zip_downloads(stkp_date);
 			if (zip_success === true) {
 				callback(true);
@@ -309,7 +310,8 @@ function get_date_number(filename) {
 	if (!file) return false;
 	// if found, extract date and create a number
 	var date = file.split(/_|\./)[1];
-	return parseInt(date.split("-").join(""));
+	var date = date.split("-");
+	return parseInt(date[2] + date[1] + date[0]);
 }
 
 
