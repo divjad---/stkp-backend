@@ -4,6 +4,7 @@ const request = require('request');
 const fs = require('fs');
 var AdmZip = require('adm-zip');
 const { resolve } = require('path');
+var http = require('http');
 
 const url = 'https://pzs.si/ktk/wpstkp/pregled-etap/';
 
@@ -31,7 +32,10 @@ const checkForDate = async function checkForDate(callback) {
 
 	var latest_et_link;
 	var latest_kt_link;
-	var stkp_date_number;
+	var stkp_date;
+	// init empty array to store etape data into
+	var etape = [];
+	var update = false;
 	
 	// ============================== Scraping website ==============================
 	await axios(url, {timeout: 60000}) // timeout after 1 min
@@ -43,95 +47,240 @@ const checkForDate = async function checkForDate(callback) {
 			// ============================== find download links ==============================
             // Get all urls with gpx files
             const links = $('h3 > strong');
-            latest_et_link = links[0].children[1].attribs["href"];
 			// this could change, but it has never been updated before
             latest_kt_link = links[3].children[1].attribs["href"];
 			// ==============================/ find download links==============================
 
-			// ============================== get update dates ==============================
-            // Get paragraphs immediately preceded by div for latest date
+			// ============================== creating etape json with information for each "etapa" ==============================
+			// get table that contains the etape
+			const etapeTable = $('#posts-table-1 > tbody > tr');
+			// loop over each table row
+			etapeTable.each((ix, item) => {
+				// get all td fields
+				const fields = $(item).find('td');
+			
+				const naslov = $(fields[0]).find('a').text();
+				const href = $(fields[0]).find('a').attr('href');
+				const content = $(fields[1]).text();
+				const category = $(fields[2]).text();
+			
+				// push object into etape array
+				etape.push({name: naslov, href: href, desc: content, category: category});
+			
+			}); 
+			// ==============================/ creating etape json with information for each "etapa" ==============================
+
+			// ============================== get latest update dates ==============================
+			// Get paragraphs immediately preceded by div for latest date
             const allP = $('h3 ~ p');
             const firstP = allP[0].children[0].data;
-            let date = firstP.replace(/\(nova verzija GPX datotek |\)/gi, "");
-            console.log("Date from website: ", date);
+            stkp_date = firstP.replace(/\(nova verzija GPX datotek |\)/gi, "");
+            console.log("Date from website: ", stkp_date);
 
+			// get month
             // Delete numbers and get only month name
-            const month = date.replace(/[0-9]|\./gi, "").trim();
+            const month = stkp_date.replace(/[0-9]|\./gi, "").trim();
             let monthNumber = monthsArr.indexOf(month) + 1;
+			// add a leading zero if less than 10
+			if (monthNumber < 10)  monthNumber = "0" + String(monthNumber);
 
-            // Change order of numbers for later date initialization
-            date = date.replace(month, monthNumber + ".")
-                .replace(/([0-9]+\. )([0-9]+\. )([0-9]+)/gi, "$3-$2-$1")
-                .replace(/\. | /g, "");
-            console.log("Date after parsing: ", date);
+			// get year
+			let year = stkp_date.split(" ").pop();
 
-			/**
-			 * Stitch together a number representing time of the files
-			 * 2019 + 09 + 03 = 20190903
-			 * if that date changes to 2021-11-01 for example
-			 * you can simply compare 20190903 to 20211101 and update 
-			 */
-			stkp_date_number = date.replace(month, monthNumber + ".");
-			const nums = stkp_date_number.split("-");
-			if (parseInt(nums[1]) < 10) nums[1] = "0" + nums[1];
-			if (parseInt(nums[2]) < 10) nums[2] = "0" + nums[2];
-			stkp_date_number = parseInt(nums[0] + nums[1] + nums[2]);
-			// ==============================/ get update dates ==============================
+			// get day
+			let day = stkp_date.split(".")[0];
+			// add a leading zero if only one number
+			if (day.length < 2) day = "0" + day;
+        
+
+			stkp_date = day +"-"+ monthNumber +"-"+ year
+			stkp_date_number = parseInt(year + monthNumber + day);
+            console.log("Date after parsing: ", stkp_date);
+            console.log("Datenumber: ", stkp_date_number);
+   
+			const zip_file_name = check_if_zip_exists();
+			if (zip_file_name) {
+				var zip_date_number = zip_file_name.split("_")[1].split(".")[0];
+				const nums = zip_date_number.split("-");
+				zip_date_number = parseInt(nums[2] + nums[1] + nums[0]);
+			}
+			
+			// If zip doesn't exist or if its date is older than date on the webpage, update files 
+            if (!zip_file_name || zip_date_number < stkp_date_number) {
+				update = true;;
+			}
+			// ==============================/ get latest update dates ==============================
 
         })
         .catch(function (error) {
-			//console.log(error);
-            callback(false, error);
+			console.log(error);
+            //callback(false, error);
+			return;
         });
 
 	// ==============================/ Scraping website ==============================
 	
 	// ============================== updating files ==============================
-	try {
-		// update "etape" gpx file
-		await updateET(latest_et_link, stkp_date_number);
-		console.log("ET successfuly updated");
+	if (update) {
+		try {
+			// clean the downloads directory
+			delete_downloads();
 
-		// update "kontrolne tocke" gpx file
-		// 20160615 is the latest update date for KT files on STKP site
-		await updateKT(latest_kt_link, 20160615);
-		console.log("KT successfuly updated");
+			// download kt
+			await download_file(latest_kt_link, "KT.gpx");
+			
+			//loop over links in json
+			for (var i = 0; i < etape.length; i++){
+				// scrape page for gpx href
+				const dl_link = await visit_etapa_and_get_link(etape[i].href);
+				// download the gpx and put it into json
+				etape[i].file = await download_file(dl_link, null);
+			}
+			
+	
+			// finnaly write the file as json
+			fs.writeFileSync(dl_location + 'etape.json', JSON.stringify(etape));
+			console.log("etape.json created");
+			const zip_success = zip_downloads(stkp_date);
+			if (zip_success === true) {
+				callback(true);
+			} else {
+				callback(false, zip_success);
+			}
 
-		await createZip(get_latest_date());
-		console.log("ZIP successfuly updated");
-
-
-		callback(true);
-	} catch (error) {
-		callback(false, error);
-		return;
+	
+		} catch (error) {
+			callback(false, error);
+			return;
+		} 
+	} else {
+		console.log("Files already up to date :)")
+		callback(true)
 	}
 	// ==============================/ updating files ==============================
 	
 		
 }
 
+/**
+ * Zips the entire downloads directory as ZIP_date.zip
+ * @param {String} date 
+ */
 
-
-function get_latest_date() {
-
-	var latest_date_number = 0;
-	var latest_date_string = "";
-
-	files = fs.readdirSync(dl_location);
-	for (var i = 0; i < files.length; i++ ){
-		if (files[i].endsWith(".gpx")) {
-			const date_string = files[i].split(/_|\./)[1];
-			const date_number = parseInt(date_string.split("-").join(""));
-			if (date_number > latest_date_number) {
-				latest_date_number = date_number;
-				latest_date_string = date_string;
-			}
+function zip_downloads(date) {
+	try {
+		zip = new AdmZip();
+		const downloads = fs.readdirSync(dl_location);
+		for (var i = 0; i < downloads.length; i++) {
+			zip.addLocalFile(dl_location + downloads[i]);
 		}
+		zip.writeZip(dl_location + "ZIP_" + date + ".zip");
+		return true;
+	} catch (error) {
+		return error;
 	}
-	return latest_date_string;
 }
 
+/**
+ * Deletes the contents of downloads directory
+ */
+function delete_downloads() {
+	try {
+		const downloads = fs.readdirSync(dl_location);
+		for (var i = 0; i < downloads.length; i++) {
+			fs.unlinkSync(dl_location + downloads[i]);
+		}
+		return true;
+	} catch (error) {
+		return error;
+	}
+}
+
+function check_if_zip_exists() {
+	const filenames = fs.readdirSync(dl_location);
+	for (var i = 0; i < filenames.length; i++) {
+		if (filenames[i].startsWith("ZIP_")) {
+			return filenames[i];
+		}
+	}
+	return false;
+}
+/**
+ * Scrape etapa (of provided link) and return the gpx file download href
+ * @param {String} etapa_link // link to etapa webpage
+ */
+
+async function visit_etapa_and_get_link(etapa_link) {
+	return new Promise((resolve, reject) => {
+		axios(etapa_link, {timeout: 60000})
+		.then(response => {
+			// Get html code
+			const html = response.data;
+			const $ = cheerio.load(html);
+			const gpx_dl_link = $('#execphp-4 > div.execphpwidget > a').attr('href');
+			resolve(gpx_dl_link);
+		})
+		.catch(function (error) {
+			//console.log(error);
+			reject(error);
+		});
+	});
+
+}
+
+/**
+ * Downloads the file from a link, checks if its a zip
+ * and unzips.. ALWAYS SAVES AS .GPX SO NOT REALLY UNIVERSAL
+ * @param {String} link // link to download the file from
+ * @param {String} name // Save file as this name.. set null if you want to keep the original
+ */
+function download_file(link, name) {
+	return new Promise((resolve, reject) => { 
+		try {
+			console.log("Downloading " + link);
+
+			request.get({url: link, encoding: null}, (err, res, body) => {
+				try {
+					if (err) {
+						// just skip for now... 
+						// http://pzs.si/ktk/wpstkp/download/978/ throws Error:  Parse Error: Expected HTTP/
+						resolve("error");
+						//reject(err);
+					}
+
+					// get filename from response header
+					const dl_filename = res.headers['content-disposition'].split("\"")[1];
+					// check if zip
+					if (dl_filename.split(".").pop().toLowerCase() === 'zip') {
+						// unzip
+						zip = new AdmZip(body);
+						// only first file... hopefully no one puts multiple gpx files in a zip lol
+						body = zip.readAsText(zip.getEntries()[0]);
+					
+					}
+
+					var actual_filename = dl_filename.slice(0, -4) + '.gpx'; 
+					// if we provided a name as a function parameter, use that name instead
+					if (name) {
+						actual_filename = name;
+					}
+					// save the downloaded file   
+					fs.writeFileSync(dl_location + actual_filename, body);
+					resolve(actual_filename);
+					
+				} catch (error) {
+					reject(error);
+				}
+		
+			});
+					
+		
+		} catch (error) {
+			reject(error);
+		}
+	})
+
+}
 
 /**
  * Checks downloads directory and returns a file which
@@ -162,152 +311,6 @@ function get_date_number(filename) {
 	var date = file.split(/_|\./)[1];
 	return parseInt(date.split("-").join(""));
 }
-
-/**
- * Reads date from filename of "etape" gpx file and compares
- * it to the one from server. If "etape" file doesn't exist yet
- * or is outdated, function then downloads "etape" zip, unzips in memory
- * and saves as "ET_date.gpx"
- */
-function updateET(link, stkp_latest_date) {
-	return new Promise((resolve, reject) => { 
-		try {
-			// get date number from file starting with "ET"
-			const latest_date = get_date_number("ET");
-			// if "etape" file doesnt exist yet or is outdated then proceed
-			if (!latest_date || stkp_latest_date > latest_date) {
-				console.log("updating ET");
-	
-				// delete the ET gpx file if exsits
-				if (latest_date) {
-					fs.unlinkSync(dl_location + get_full_filename("ET"));
-				}
-				// download new file
-				request.get({url: link, encoding: null}, (err, res, body) => {
-					try {
-						// read the downloaded zip file
-						var zip = new AdmZip(body);
-						var zipEntries = zip.getEntries();
-						// loop over zipped files
-						for (var i = 0; i < zipEntries.length; i++) {
-							// if found one which name starts with "STKP", create a name and unzip it
-							if (zipEntries[i].entryName.startsWith("STKP")) {
-								// create filename "ET_year-month-day.gpx"
-								filename = "ET_" + zipEntries[i].entryName.split("_")[1];
-								// write the file
-								fs.writeFileSync(dl_location + filename, zip.readAsText(zipEntries[i]))
-								console.log("Done writing ET\n");
-								resolve(true);
-
-							}
-						}
-						
-					} catch (error) {
-						reject(error);
-						
-					}
-				});
-			} else {
-				// files up to date already
-				resolve(true);
-			}
-
-		} catch (error) {
-			reject(error);
-		}
-		
-	});
-}
-
-/**
- * Reads date from filename of "kontrolne tocke" gpx file and compares
- * it to the one from STKP site. If "kontrolne tock" file doesn't exist yet
- * or is outdated, function then downloads "kontrolne tocke" gpx
- * and saves as "KT_date.gpx"
- */
-function updateKT(link, stkp_latest_date) {
-	return new Promise((resolve, reject) => { 
-		try {
-			const latest_date = get_date_number("KT");
-	
-			// if "kontrolne tocke" file doesnt exist yet or is outdated then proceed
-			if (!latest_date || stkp_latest_date > latest_date) {
-				console.log("updating KT");
-		
-				// delete the ET gpx file if exsits
-				if (latest_date) {
-					fs.unlinkSync(dl_location + get_full_filename("KT"));
-				}
-				// download new file
-				request.get({url: link, encoding: null}, (err, res, body) => {
-					try {
-						// get filename from response header
-						const dl_filename = res.headers['content-disposition'].split("\"")[1];
-						// extract date from filename
-						var date = dl_filename.split("_")[1];
-						const filename = "KT_" + date + ".gpx";
-						// save the downloaded file
-						fs.writeFileSync(dl_location + filename, body)
-						console.log("done writing KT\n");
-						resolve(true);
-						
-					} catch (error) {
-						reject(error);
-					}
-			
-				});
-					
-			}else {
-				// files up to date already
-				resolve(true);
-			}
-		} catch (error) {
-			reject(error);
-		}
-	// get date number from file starting with "ET"
-	})
-
-}
-
-/**
- * Creates the zip of both gpx files named as 
- * "ZIP_date.zip" where date is the "latest_date"
- * passed into function as a parameter. It should be
- * the newest date of both ET and KT files
- */
-
-function createZip(latest_date) {
-	return new Promise((resolve, reject) => { 
-		try {
-			// create a date number from the passed date string
-			const latest_date_number = parseInt(latest_date.split("-"));
-			// get date number from the ZIP file name
-			const zip_date_number = get_date_number("ZIP");
-			// if zip file doesnt exist or is outdated, proceed
-			if(!zip_date_number || latest_date_number > zip_date_number) {
-				console.log("Updating Zip");
-				// if already exists, delete
-				if (zip_date_number) {
-					fs.unlinkSync(dl_location + get_full_filename("ZIP"));	
-				}
-
-				zip = new AdmZip();
-				zip.addLocalFile(dl_location + get_full_filename("ET"));
-				zip.addLocalFile(dl_location + get_full_filename("KT"));
-				zip.writeZip(dl_location + "ZIP_" + latest_date + ".zip");
-				console.log("Done writing Zip\n");
-				resolve(true);
-			} else {
-				// files up to date already
-				resolve(true);
-			}
-			
-		} catch (error) {
-			reject(error);
-		}
-	});
-}
-
 
 
 
