@@ -12,7 +12,7 @@ const scraper = require("./scrape");
  * Accepts a query parameter
  */
 app.get('/download', (req, res) => {
-	filename = scraper.get_full_filename("ZIP");
+	let filename = scraper.get_full_filename("ZIP");
     const filePath = path.join(__dirname, scraper.dl_location + filename);
 
     if (fs.existsSync(filePath)) {
@@ -33,7 +33,7 @@ app.get('/download', (req, res) => {
  */
 app.get('/get-latest-date', (req, res) => {
 	try {
-		const date = scraper.get_full_filename("ZIP").split(/_|\./)[1];
+		const date = scraper.get_full_filename("ZIP").split(/[_.]/)[1];
 		res.status(200).json({
 			"latest-date": date,	
 		});
@@ -42,6 +42,7 @@ app.get('/get-latest-date', (req, res) => {
 		res.status(500).end("Internal server error");
 	}
 })
+
 /**
  * Reads date from the ZIP filename (Zip contains the newest of both dates)
  * and converts it to a number. If the filename contained a date "2019-09-03",
