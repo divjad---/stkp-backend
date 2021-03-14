@@ -2,6 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const request = require('request');
 const fs = require('fs');
+const http = require('http');
 const AdmZip = require('adm-zip');
 
 const url = 'https://pzs.si/ktk/wpstkp/pregled-etap/';
@@ -120,7 +121,7 @@ const checkForDate = async function checkForDate(callback) {
                 // scrape page for gpx href
                 const dl_link = await visit_etapa_and_get_link(etape[i].href);
                 // download the gpx and put it into json
-                etape[i].file = await download_file(dl_link, `Etapa_${i+1}.gpx`);
+                etape[i].file = await download_file(dl_link, `Etapa_${i + 1}.gpx`);
             }
 
             // finally write the file as json
@@ -136,6 +137,7 @@ const checkForDate = async function checkForDate(callback) {
                 callback(false, zip_success);
             }
         } catch (error) {
+            console.log(error);
             callback(false, error);
         }
     } else {
@@ -228,13 +230,22 @@ function download_file(link, name) {
         try {
             console.log("Downloading " + link);
 
-            request.get({url: link, encoding: null}, (err, res, body) => {
+            const options = {
+                url: link,
+                method: 'GET',
+                headers: {
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                    'Accept-Encoding': 'gzip, deflate'
+                },
+                encoding: null,
+                gzip: true
+            };
+
+            request.get(options, (err, res, body) => {
                 try {
                     if (err) {
                         // just skip for now...
                         // http://pzs.si/ktk/wpstkp/download/978/ throws Error:  Parse Error: Expected HTTP/
-
-                        //console.log(err);
 
                         resolve("error");
                         //reject(err);
@@ -247,6 +258,7 @@ function download_file(link, name) {
                     if (dl_filename.split(".").pop().toLowerCase() === 'zip') {
                         // unzip
                         let zip = new AdmZip(body);
+
                         // only first file... hopefully no one puts multiple gpx files in a zip lol
                         body = zip.readAsText(zip.getEntries()[0]);
                     }
@@ -260,6 +272,7 @@ function download_file(link, name) {
 
                     // save the downloaded file
                     fs.writeFileSync(dl_location + actual_filename, body);
+                    //console.log("Finished writing " + actual_filename);
                     resolve(actual_filename);
                 } catch (error) {
                     reject(error);
