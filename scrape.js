@@ -2,10 +2,10 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const request = require('request');
 const fs = require('fs');
-const http = require('http');
 const AdmZip = require('adm-zip');
 
-const url = 'https://pzs.si/ktk/wpstkp/pregled-etap/';
+const etapeUrl = 'https://pzs.si/ktk/wpstkp/pregled-etap/';
+const kontrolneTockeUrl = 'https://pzs.si/ktk/wpstkp/kontrolne-tocke/';
 
 // Array with months for replacing word with number
 const monthsArr = ["januar", "februar", "marec", "april", "maj", "junij", "julij",
@@ -22,12 +22,14 @@ const dl_location = "downloads/";
 const checkForDate = async function checkForDate(callback) {
     let latest_kt_link;
     let stkp_date;
+
     // init empty array to store etape data into
     const etape = [];
+
     let update = false;
 
     // ============================== Scraping website ==============================
-    await axios(url, {timeout: 60000}) // timeout after 1 min
+    await axios(etapeUrl, {timeout: 60000}) // timeout after 1 min
         .then(response => {
             // Get html code
             const html = response.data;
@@ -113,6 +115,11 @@ const checkForDate = async function checkForDate(callback) {
             // clean the downloads directory
             delete_downloads();
 
+            console.log("Goto download kt");
+            const ktBack = await getKontrolneTockeJson();
+
+            console.log(ktBack);
+
             // download kt
             await download_file(latest_kt_link, "KT.gpx");
 
@@ -146,6 +153,49 @@ const checkForDate = async function checkForDate(callback) {
         callback(true);
     }
     // ==============================/ updating files ==============================
+}
+
+function getKontrolneTockeJson() {
+    // init empty array to store kt data into
+    const kontrolneTocke = [];
+
+    return new Promise((resolve, reject) => {
+        axios(kontrolneTockeUrl, {timeout: 60000}) // timeout after 1 min
+            .then(response => {
+                console.log("Response from kt url");
+
+                // Get html code
+                const html = response.data;
+
+                const $ = cheerio.load(html);
+
+                const ktTable = $('#tablepress-3 > tbody > tr');
+
+                // loop over each table row
+                ktTable.each((ix, item) => {
+                    // get all td fields
+                    const fields = $(item).find('td');
+
+                    const zapSt = $(fields[0]).text();
+                    const naziv = $(fields[1]).text();
+                    const naslov = $(fields[2]).text();
+                    const polozajZiga = $(fields[3]).text();
+
+                    const obj = {zapSt: zapSt, naziv: naziv, naslov: naslov, zig: polozajZiga};
+                    kontrolneTocke.push(obj);
+                });
+
+                fs.writeFileSync(dl_location + "kt.json", JSON.stringify(kontrolneTocke));
+
+                console.log("kt.json created");
+
+                resolve("kt.json created");
+            }).catch(function (error) {
+            console.log(error);
+
+            reject(error);
+        });
+    });
 }
 
 /**

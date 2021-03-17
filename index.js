@@ -25,7 +25,7 @@ app.get('/download', (req, res) => {
     } else {
         res.status(404).end("Datoteka ne obstaja");
     }
-}); 
+});
 
 /**
  * Reads date from the ZIP filename (Zip contains the newest of both dates).
@@ -41,7 +41,7 @@ app.get('/get-latest-date', (req, res) => {
 		console.log(e);
 		res.status(500).end("Internal server error");
 	}
-})
+});
 
 /**
  * Reads date from the ZIP filename (Zip contains the newest of both dates)
@@ -58,7 +58,7 @@ app.get('/get-latest-date-number', (req, res) => {
 		console.log(e);
 		res.status(500).end("Internal server error");
 	}
-})
+});
 
 
 /**
