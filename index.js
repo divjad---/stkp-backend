@@ -35,7 +35,7 @@ app.get('/get-latest-date', (req, res) => {
 	try {
 		const date = scraper.get_full_filename("ZIP").split(/[_.]/)[1];
 		res.status(200).json({
-			"latest-date": date,	
+			"date": date,
 		});
 	} catch (e) {
 		console.log(e);
@@ -52,7 +52,7 @@ app.get('/get-latest-date-number', (req, res) => {
 	try {
 		const date = scraper.get_date_number("ZIP");
 		res.status(200).json({
-			"latest-date-number": date,	
+			"date-number": date,
 		});
 	} catch (e) {
 		console.log(e);

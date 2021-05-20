@@ -4,8 +4,8 @@ const request = require('request');
 const fs = require('fs');
 const AdmZip = require('adm-zip');
 
-const etapeUrl = 'https://pzs.si/ktk/wpstkp/pregled-etap/';
-const kontrolneTockeUrl = 'https://pzs.si/ktk/wpstkp/kontrolne-tocke/';
+const etapeUrl = 'https://stkp.pzs.si/pregled-etap/';
+const kontrolneTockeUrl = 'https://stkp.pzs.si/kontrolne-tocke/';
 
 // Array with months for replacing word with number
 const monthsArr = ["januar", "februar", "marec", "april", "maj", "junij", "julij",
@@ -39,8 +39,10 @@ const checkForDate = async function checkForDate(callback) {
             // Get all urls with gpx files
             const links = $('h3 > strong');
 
+            console.log(links[0].children[1].attribs["href"]);
+
             // this could change, but it has never been updated before
-            latest_kt_link = links[3].children[1].attribs["href"];
+            latest_kt_link = links[0].children[1].attribs["href"];
             // ==============================/ find download links==============================
 
             // ============================== creating etape json with information for each "etapa" ==============================
@@ -80,7 +82,7 @@ const checkForDate = async function checkForDate(callback) {
             // get year
             let year = stkp_date.split(" ").pop();
             // get day
-            let day = stkp_date.split(".")[0];
+            let day = "01";
             // add a leading zero if only one number
             if (day.length < 2) day = "0" + day;
 
@@ -121,7 +123,7 @@ const checkForDate = async function checkForDate(callback) {
             console.log(ktBack);
 
             // download kt
-            await download_file(latest_kt_link, "KT.gpx");
+            //await download_file(latest_kt_link, "KT.gpx");
 
             //loop over links in json
             for (let i = 0; i < etape.length; i++) {
@@ -227,6 +229,10 @@ function delete_downloads() {
     try {
         const downloads = fs.readdirSync(dl_location);
         for (let i = 0; i < downloads.length; i++) {
+            if(downloads[i] === "KT.gpx"){
+                continue;
+            }
+
             fs.unlinkSync(dl_location + downloads[i]);
         }
 
