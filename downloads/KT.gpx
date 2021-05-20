@@ -1,0 +1,664 @@
+<?xml version="1.0"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.1" creator="Quo v2" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <desc>GPX datoteka generirana s programom Quo.</desc>
+    <link href="http://www.kje.si">
+      <text>Mapyx</text>
+    </link>
+    <time>2016-06-15T15:10:12.1335503+02:00</time>
+  </metadata>
+  <wpt lat="46.0485059902795" lon="14.5094144797886">
+    <ele>367.469744665397</ele>
+    <time>2015-11-26T21:06:24.2308962</time>
+    <name>Ljubljanski grad</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1049954465466" lon="14.3691107425898">
+    <ele>803.398534579128</ele>
+    <time>2015-11-26T21:15:27.9149931</time>
+    <name>Sveti Jakob nad Medvodami</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1155313845453" lon="14.3460446736363">
+    <ele>726.307581164872</ele>
+    <time>2015-11-26T21:08:45.5139771</time>
+    <name>Mihelčičev dom na Govejku</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1679560348341" lon="14.2534647390792">
+    <ele>769.527505312395</ele>
+    <time>2015-11-26T21:19:22.4814096</time>
+    <name>Malina pod Lubnikom</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1663911426232" lon="14.1051579659184">
+    <ele>1390.2050760524</ele>
+    <time>2015-11-26T21:21:08.9955018</time>
+    <name>Koča na Blegošu</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1625866066227" lon="14.0595915241524">
+    <ele>1277.64504193054</ele>
+    <time>2015-11-26T21:22:54.4785351</time>
+    <name>Alpska perla na Črnem vrhu</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1793739828372" lon="13.9761596406225">
+    <ele>1584.82451367036</ele>
+    <time>2015-11-26T21:24:36.6733803</time>
+    <name>Koča na Poreznu</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2155593106751" lon="13.9995599379111">
+    <ele>802.562890049226</ele>
+    <time>2015-11-26T21:25:37.3068484</time>
+    <name>Koča na Petrovem Brdu</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2413925777458" lon="14.0098762815889">
+    <ele>1281.27977959007</ele>
+    <time>2015-11-26T21:30:22.4031549</time>
+    <name>Soriška planina</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2741351075616" lon="13.9493280651722">
+    <ele>506</ele>
+    <time>2015-11-26T21:36:25.5059232</time>
+    <name>Bohinjska Bistrica</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.277442458978" lon="13.887161165762">
+    <ele>531.519018407173</ele>
+    <time>2015-11-26T21:40:40.4185034</time>
+    <name>Spomenik 4 srčnim možem</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.3204999736849" lon="13.909580867861">
+    <ele>1154.97331922814</ele>
+    <time>2015-11-26T21:53:35.8418551</time>
+    <name>Planinska koča na Uskovnici</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.338628898243" lon="13.9618280606284">
+    <ele>1266.03995721124</ele>
+    <time>2015-11-26T22:04:56.2257708</time>
+    <name>Goreljek</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4004408710879" lon="13.9235671344395">
+    <ele>870.461741872818</ele>
+    <time>2015-11-26T22:06:42.9238736</time>
+    <name>Kovinarska koča v Krmi</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4581436832763" lon="13.9357009660066">
+    <ele>660.674692772103</ele>
+    <time>2015-11-26T22:08:25.8337597</time>
+    <name>Slovenski planinski muzej</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4843519560527" lon="13.8232407401134">
+    <ele>761.633983756453</ele>
+    <time>2016-04-21T22:04:49.8662445</time>
+    <name>Spomenik Juretu Robiču</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4433119730388" lon="13.7715098860113">
+    <ele>1085.57559679106</ele>
+    <time>2015-11-26T22:12:28.8336585</time>
+    <name>Mihov dom na Vršiču</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4398143699987" lon="13.7626123480411">
+    <ele>1224.30399133727</ele>
+    <time>2015-11-26T22:16:37.1948639</time>
+    <name>Koča na Gozdu</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4323964587387" lon="13.7477313025421">
+    <ele>1688.57911357693</ele>
+    <time>2015-11-26T22:18:40.5379188</time>
+    <name>Poštarski dom na Vršiču</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4327625244383" lon="13.7443924823186">
+    <ele>1623.90992331073</ele>
+    <time>2015-11-26T22:29:59.8827751</time>
+    <name>Tičarjev dom na Vršiču</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4092367285395" lon="13.7255616302256">
+    <ele>883.946022425517</ele>
+    <time>2015-11-26T22:31:25.5786766</time>
+    <name>Koča pri izviru Soče</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.3807551468437" lon="13.7522812069295">
+    <ele>625.341250277988</ele>
+    <time>2015-11-26T22:33:48.897874</time>
+    <name>Dom Trenta</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.3037373563519" lon="13.6815234685728">
+    <ele>699.352229820043</ele>
+    <time>2015-11-26T22:36:09.0498902</time>
+    <name>Dom dr. Klementa Juga v Lepeni</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.3211157169476" lon="13.549969100533">
+    <ele>369.199338669479</ele>
+    <time>2015-11-26T22:46:42.0350949</time>
+    <name>Čezsoča</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2566018436688" lon="13.6134013761808">
+    <ele>536.543147270382</ele>
+    <time>2015-11-26T23:03:59.8184527</time>
+    <name>Drežnica</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2414054086867" lon="13.6597990296325">
+    <ele>988.612023054957</ele>
+    <time>2015-11-26T23:08:34.9701905</time>
+    <name>Koča na planini Kuhinja</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2343213176837" lon="13.7198396771594">
+    <ele>553.715895147026</ele>
+    <time>2015-11-26T23:09:46.4582794</time>
+    <name>Javorca</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1369491755405" lon="13.7767846080815">
+    <ele>160.015899293919</ele>
+    <time>2015-11-26T23:13:00.6343856</time>
+    <name>Idrija pri Bači, Zlata ribica</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1429982785171" lon="13.8648406558014">
+    <ele>969.808484714751</ele>
+    <time>2015-11-27T11:37:38.7113198</time>
+    <name>Črvov vrh</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1648259739714" lon="13.9269081163559">
+    <ele>703.211101509213</ele>
+    <time>2015-11-27T11:40:32.9972884</time>
+    <name>Zakojca</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1289144795369" lon="13.9895914370224">
+    <ele>323.951284969673</ele>
+    <time>2015-11-27T11:42:32.0120956</time>
+    <name>Cerkno</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.0631165038656" lon="14.0549148610138">
+    <ele>953.187898233607</ele>
+    <time>2015-11-27T11:53:18.0840488</time>
+    <name>Koča na Mrzliku</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.9874882777089" lon="13.9957769297293">
+    <ele>816</ele>
+    <time>2015-11-27T11:54:45.3090378</time>
+    <name>Koča na Hleviški planini</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.9758033432752" lon="13.8538082661314">
+    <ele>1274.99359428606</ele>
+    <time>2015-11-27T11:56:26.5888307</time>
+    <name>Iztokova koča pod Golaki</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.9531587579711" lon="13.8799249404364">
+    <ele>945.638853078618</ele>
+    <time>2016-06-09T21:06:45.865388</time>
+    <name>Koča Edmunda Čibeja v Tihi dolini</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.8968144300601" lon="13.9049532209443">
+    <ele>117.422804051042</ele>
+    <time>2015-11-27T12:04:04.1009989</time>
+    <name>Mladinski center v Ajdovščini</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.823533780355" lon="13.8450999818149">
+    <ele>330.7537624875</ele>
+    <time>2015-11-27T12:05:13.8929908</time>
+    <name>Štanjel</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.8572540758897" lon="13.7058994334677">
+    <ele>610.525391450558</ele>
+    <time>2015-11-27T12:06:57.5089172</time>
+    <name>Stjenkova koča na Trstelju</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.7717840046555" lon="13.7837082473265">
+    <ele>277.110485268986</ele>
+    <time>2015-11-27T12:09:15.8578303</time>
+    <name>Mladinski hotel Pliskovica</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.6669069243929" lon="13.8811589718409">
+    <ele>398.343664384037</ele>
+    <time>2015-11-27T12:12:07.5556509</time>
+    <name>Lipica</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.6445487111342" lon="13.8999348722281">
+    <ele>666.041107609995</ele>
+    <time>2015-11-27T12:13:53.14069</time>
+    <name>Koča na Kokoši</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.5894118090523" lon="13.8609061730159">
+    <ele>434.679635706103</ele>
+    <time>2015-11-27T12:14:58.0134005</time>
+    <name>Socerb</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.5611597045066" lon="13.8341390528742">
+    <ele>361.373445462659</ele>
+    <time>2015-11-27T12:17:09.8019384</time>
+    <name>Tinjan</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.5323925365175" lon="13.6041980072048">
+    <ele>2</ele>
+    <time>2015-11-27T12:19:41.849635</time>
+    <name>Strunjan</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.5286583812297" lon="13.5682721202599">
+    <ele>1.20963720258513</ele>
+    <time>2015-11-27T12:21:28.5407374</time>
+    <name>Piran</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.4920079634057" lon="13.6087221038685">
+    <ele>1</ele>
+    <time>2015-11-27T12:24:33.9243408</time>
+    <name>Sečoveljske soline</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.5071159315024" lon="13.7987813573981">
+    <ele>278.742162255496</ele>
+    <time>2015-11-27T12:26:35.2532804</time>
+    <name>Marezige</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.5081433221724" lon="13.8988247480966">
+    <ele>172.746958175898</ele>
+    <time>2015-11-27T14:02:21.1889291</time>
+    <name>Hrastovlje</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.5338846688104" lon="13.97522583094">
+    <ele>1014.50890062779</ele>
+    <time>2015-11-27T14:03:09.668702</time>
+    <name>Tumova koča na Slavniku</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.5777430958331" lon="14.1385665215543">
+    <ele>689.832942430079</ele>
+    <time>2015-11-27T14:10:33.4290836</time>
+    <name>Pregarje</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.59448692047" lon="14.3095058944658">
+    <ele>1096.34562645294</ele>
+    <time>2015-11-27T14:12:02.4851773</time>
+    <name>Velika Milanja</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.5741234974864" lon="14.401064829944">
+    <ele>1242.96819651885</ele>
+    <time>2015-11-27T14:49:05.4933261</time>
+    <name>Planinski dom na Sviščakih</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.6282660975538" lon="14.3662639535222">
+    <ele>1028.86565194327</ele>
+    <time>2015-11-27T17:33:49.4316551</time>
+    <name>Mašun</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.6816004881177" lon="14.4704138128035">
+    <ele>580.885974409224</ele>
+    <time>2015-11-27T17:34:46.7019307</time>
+    <name>Grad Snežnik</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.7020768630952" lon="14.5904195069075">
+    <ele>775.408498701991</ele>
+    <time>2015-11-27T17:36:01.7442229</time>
+    <name>Hrib Loški potok</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.7291467051596" lon="14.6169208385325">
+    <ele>1012.95730311967</ele>
+    <time>2015-11-27T17:37:35.1815672</time>
+    <name>Koča na Kamen vrhu</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.7355673913497" lon="14.6446040871442">
+    <ele>896.078145750289</ele>
+    <time>2015-11-27T17:38:42.4614154</time>
+    <name>Dom na Travni gori</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.620026655088" lon="14.8472351698006">
+    <ele>877.71759230828</ele>
+    <time>2015-11-27T17:40:12.9735924</time>
+    <name>Koča pri Jelenovem studencu</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.6374582495255" lon="14.995389316542">
+    <ele>662.978885446042</ele>
+    <time>2015-11-27T17:42:09.6932684</time>
+    <name>Rajhenav</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.6294286528504" lon="15.1030027857145">
+    <ele>998.052163172858</ele>
+    <time>2015-11-27T17:43:39.5964106</time>
+    <name>Planinski dom na Mirni gori</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.603401930017" lon="15.2759913673782">
+    <ele>137.883077398539</ele>
+    <time>2015-11-27T20:30:24.6156649</time>
+    <name>Podzemelj</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.7664705423826" lon="15.2969844410257">
+    <ele>830.032770338349</ele>
+    <time>2015-11-27T20:32:17.6061276</time>
+    <name>Plan. dom pri Gospodični na Gorjancih</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.8299242019319" lon="15.5077125640765">
+    <ele>673.175347183794</ele>
+    <time>2015-11-27T20:37:19.9344198</time>
+    <name>Planina v Podbočju</name>
+    <desc />
+  </wpt>
+  <wpt lat="45.9018930357477" lon="15.5931036819236">
+    <ele>156.74220543392</ele>
+    <time>2015-11-27T20:39:26.7496732</time>
+    <name>Brežice</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.0135998104876" lon="15.5787124423403">
+    <ele>429.692372902632</ele>
+    <time>2015-11-27T20:40:49.2463918</time>
+    <name>Zavetišče v Pečicah</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.0276742966713" lon="15.5902652925532">
+    <ele>475.008143069366</ele>
+    <time>2015-11-27T20:42:24.7348534</time>
+    <name>Grad Podsreda</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.0651280135587" lon="15.4527980638577">
+    <ele>900.0744835327</ele>
+    <time>2015-11-27T20:43:45.7414867</time>
+    <name>Koča na Bohorju</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1347333299391" lon="15.4055658165714">
+    <ele>566.074160675538</ele>
+    <time>2015-11-27T20:46:39.5984307</time>
+    <name>Kozjanska domačija</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1930717023402" lon="15.3680433746446">
+    <ele>647.512610793923</ele>
+    <time>2015-11-27T20:48:21.3142486</time>
+    <name>Planinski dom na Resevni</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2806039947403" lon="15.413688804341">
+    <ele>458.866497629174</ele>
+    <time>2015-11-27T20:50:28.5945286</time>
+    <name>Planinska postojanka na Sv. Uršuli</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2895298039586" lon="15.4671875272867">
+    <ele>488.228133430257</ele>
+    <time>2015-11-27T20:51:37.9344946</time>
+    <name>Koča na Klokočovniku</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2897718042183" lon="15.5434823375181">
+    <ele>511</ele>
+    <time>2015-11-27T20:53:09.9667585</time>
+    <name>Ljubična gora</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2747808044321" lon="15.5825763375303">
+    <ele>539.374614160508</ele>
+    <time>2015-11-27T20:55:59.6074614</time>
+    <name>Planinska koča Velikonočnica</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2835238045406" lon="15.5935953374125">
+    <ele>656.880219281092</ele>
+    <time>2015-11-27T20:56:47.6062068</time>
+    <name>Planinski dom na Boču</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2643457842564" lon="15.7346533620465">
+    <ele>589.354657402039</ele>
+    <time>2015-11-27T20:57:45.5105187</time>
+    <name>Rudijev dom</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4121353086013" lon="16.0131140783057">
+    <ele>210.078744017749</ele>
+    <time>2015-11-27T20:59:39.6460469</time>
+    <name>Gorišnica</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4674377108172" lon="16.0036639600788">
+    <ele>295.952081618607</ele>
+    <time>2015-11-27T21:01:05.8869796</time>
+    <name>Polenšak</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4985972253247" lon="15.9838200795915">
+    <ele>329.43914970955</ele>
+    <time>2016-04-21T23:12:24.2291408</time>
+    <name>Puhov muzej, Sakušak</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.5747118762649" lon="15.8762808533376">
+    <ele>285</ele>
+    <time>2015-11-27T21:02:43.2865506</time>
+    <name>Sv. Trojica</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.5385335224659" lon="15.8265942080032">
+    <ele>368.467113679435</ele>
+    <time>2015-11-27T21:11:48.2457204</time>
+    <name>Maistrov stolp </name>
+    <desc />
+  </wpt>
+  <wpt lat="46.5567278874625" lon="15.6440395294877">
+    <ele>255.689103357374</ele>
+    <time>2015-11-27T21:13:11.4054769</time>
+    <name>Hiša stare trte v Mariboru</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.5018227925094" lon="15.5563558668901">
+    <ele>1069.21529168389</ele>
+    <time>2015-11-30T18:00:02.2490767</time>
+    <name>Mariborska koča</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4950067072767" lon="15.5081972022751">
+    <ele>1249.5874163904</ele>
+    <time>2015-11-30T18:01:23.5757283</time>
+    <name>Ruška koča</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4489362634902" lon="15.4196507260632">
+    <ele>1183.02983507335</ele>
+    <time>2016-06-09T21:12:37.8915228</time>
+    <name>Dom na Osankarici</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4670301601693" lon="15.3441444334739">
+    <ele>1385.07571734813</ele>
+    <time>2015-11-30T18:03:03.3994379</time>
+    <name>Koča na Pesku</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.5179927408106" lon="15.2510651918204">
+    <ele>1097.48195693411</ele>
+    <time>2015-11-30T18:04:03.6358833</time>
+    <name>Koča na Pesniku</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4975969044815" lon="15.2556477515646">
+    <ele>1504.65434277826</ele>
+    <time>2015-11-30T18:04:40.9110153</time>
+    <name>Ribniška koča</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.5027208748344" lon="15.2106264950838">
+    <ele>1369.40242214764</ele>
+    <time>2015-11-30T18:05:28.4477342</time>
+    <name>Grmovškov dom</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.5314809330844" lon="15.1721178309992">
+    <ele>1027.83973779738</ele>
+    <time>2015-11-30T18:06:12.4082486</time>
+    <name>Koča Planinc</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.6391942520128" lon="15.1037828799873">
+    <ele>1062.57976167161</ele>
+    <time>2015-11-30T18:07:32.9838573</time>
+    <name>Pernice</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.6361141464444" lon="15.0320055896296">
+    <ele>1168.47309351328</ele>
+    <time>2015-11-30T18:08:35.4154282</time>
+    <name>Planinski dom Košenjak</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4959264939099" lon="15.0123165404227">
+    <ele>808.992209239379</ele>
+    <time>2015-11-30T18:09:44.6233866</time>
+    <name>Poštarski dom pod Plešivcem</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4846260426704" lon="14.9651212848721">
+    <ele>1679.37950845048</ele>
+    <time>2015-11-30T18:10:57.1915373</time>
+    <name>Dom na Uršlji gori</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4864895115999" lon="14.9376216855127">
+    <ele>1072.52030922949</ele>
+    <time>2015-11-30T18:12:52.5671364</time>
+    <name>Koča na Naravskih ledinah</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.5121568442442" lon="14.8593991005755">
+    <ele>499.713965466246</ele>
+    <time>2016-04-21T23:26:17.2287857</time>
+    <name>Rudnik Mežica</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4888469727704" lon="14.8369006026014">
+    <ele>988.160965031162</ele>
+    <time>2015-11-30T18:18:39.1829617</time>
+    <name>Koča na Pikovem</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4909765206311" lon="14.7940634967801">
+    <ele>1670.64265455989</ele>
+    <time>2015-11-30T18:19:38.3593464</time>
+    <name>Dom na Peci</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.4871188079721" lon="14.725876583781">
+    <ele>1218.05726704612</ele>
+    <time>2015-11-30T18:20:56.9678425</time>
+    <name>Pri Kumru</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.438958059688" lon="14.6647876049683">
+    <ele>1231.665730572</ele>
+    <time>2015-11-30T18:23:49.9517367</time>
+    <name>Podolševa</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.3837174955741" lon="14.6217590351055">
+    <ele>831.789732536813</ele>
+    <time>2015-11-30T18:24:58.1516375</time>
+    <name>Dom planincev v Logarski dolini</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.2619743222958" lon="14.8193008320783">
+    <ele>1453.78857156843</ele>
+    <time>2015-11-30T18:38:15.4552406</time>
+    <name>Dom na Menini planini</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1880779948143" lon="14.8836994870388">
+    <ele>556.981916167099</ele>
+    <time>2015-11-30T18:41:35.4796814</time>
+    <name>Trojane</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.190203028383" lon="14.9618770080261">
+    <ele>1124.58538562799</ele>
+    <time>2015-11-30T18:45:03.6475879</time>
+    <name>Dom Franca Goloba na Čemšeniški planini</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1771648856059" lon="15.0212393112861">
+    <ele>974.439193332643</ele>
+    <time>2015-11-30T18:47:56.0314477</time>
+    <name>Gostišče Planina</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1882688576316" lon="15.1086832346911">
+    <ele>1090.30968320261</ele>
+    <time>2015-11-30T18:55:39.8079742</time>
+    <name>Planinski dom na Mrzlici</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.1731240599822" lon="15.1080558326541">
+    <ele>943.125517212865</ele>
+    <time>2015-11-30T18:57:21.7838069</time>
+    <name>Planinski rudarski dom na Kalu</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.114874853812" lon="15.1387020032394">
+    <ele>761.960380162448</ele>
+    <time>2015-11-30T18:58:13.0877413</time>
+    <name>Planinski dom v Gorah</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.0875993219778" lon="15.0723541446913">
+    <ele>1211.55009328802</ele>
+    <time>2015-11-30T18:59:06.9118198</time>
+    <name>Planinski dom na Kumu</name>
+    <desc />
+  </wpt>
+  <wpt lat="46.0522290711984" lon="14.7102511966354">
+    <ele>791.172421285063</ele>
+    <time>2015-11-30T18:59:55.063574</time>
+    <name>Planinski dom na Jančah</name>
+    <desc />
+  </wpt>
+</gpx>
