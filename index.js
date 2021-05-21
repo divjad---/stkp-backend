@@ -38,10 +38,19 @@ app.get('/download', (req, res) => {
  */
 app.get('/get-latest-date', (req, res) => {
 	try {
-		const date = scraper.getFullFilename("ZIP").split(/[_.]/)[1];
-		res.status(200).json({
-			"date": date,
-		});
+        let filename = scraper.getFullFilename("ZIP");
+        const filePath = path.join(__dirname, scraper.dl_location + filename);
+
+        if (fs.existsSync(filePath)) {
+            const date = filename.split(/[_.]/)[1];
+            res.status(200).json({
+                "date": date,
+            });
+        }else{
+            res.status(404).json({
+                "date": null,
+            });
+        }
 	} catch (e) {
 		console.log(e);
 		res.status(500).end("Internal server error");
@@ -55,10 +64,19 @@ app.get('/get-latest-date', (req, res) => {
  */
 app.get('/get-latest-date-number', (req, res) => {
 	try {
-		const date = scraper.getDateNumber("ZIP");
-		res.status(200).json({
-			"date-number": date,
-		});
+        let filename = scraper.getFullFilename("ZIP");
+        const filePath = path.join(__dirname, scraper.dl_location + filename);
+
+        if (fs.existsSync(filePath)) {
+            const date = scraper.getDateNumber("ZIP");
+            res.status(200).json({
+                "date-number": date,
+            });
+        }else{
+            res.status(404).json({
+                "date-number": null,
+            });
+        }
 	} catch (e) {
 		console.log(e);
 		res.status(500).end("Internal server error");
