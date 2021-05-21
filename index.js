@@ -9,7 +9,7 @@ const cron = require('node-cron');
 
 const scraper = require("./scrape");
 
-const version = "v1.1"
+const version = "v1.01"
 
 app.get('/', (req, res) => {
     res.end("STKP backend " + version);
