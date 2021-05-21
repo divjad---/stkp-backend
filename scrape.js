@@ -37,7 +37,7 @@ const checkForDate = async function checkForDate(callback) {
             const $ = cheerio.load(html);
 
             // Get info about each tour
-            etape = getEtape(etape, $);
+            etape = getEtape($);
 
             // Get date of last gpx file update on webiste
             let date = getWebsiteDate($);
