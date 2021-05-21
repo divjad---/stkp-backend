@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=15.11.0",
+    "npm": ">=7.7.5"
   },
   "keywords": [],
-  "author": "",
+  "author": "David Trafela, Jan Krivec",
   "license": "ISC",
   "dependencies": {
     "adm-zip": "*",
@@ -18,5 +22,6 @@
     "nodemon": "^2.0.7",
     "request": "^2.88.2",
     "save": "^2.4.0"
-  }
+  },
+  "private": true
 }

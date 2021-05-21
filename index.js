@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+
 const port = 3000;
 
 const fs = require('fs');
@@ -12,7 +13,7 @@ const scraper = require("./scrape");
  * Accepts a query parameter
  */
 app.get('/download', (req, res) => {
-	let filename = scraper.get_full_filename("ZIP");
+	let filename = scraper.getFullFilename("ZIP");
     const filePath = path.join(__dirname, scraper.dl_location + filename);
 
     if (fs.existsSync(filePath)) {
@@ -29,11 +30,11 @@ app.get('/download', (req, res) => {
 
 /**
  * Reads date from the ZIP filename (Zip contains the newest of both dates).
- * Sends back a string in 2019-09-03 format
+ * Sends back a string in DD-MM-YYYY format
  */
 app.get('/get-latest-date', (req, res) => {
 	try {
-		const date = scraper.get_full_filename("ZIP").split(/[_.]/)[1];
+		const date = scraper.getFullFilename("ZIP").split(/[_.]/)[1];
 		res.status(200).json({
 			"date": date,
 		});
@@ -45,12 +46,12 @@ app.get('/get-latest-date', (req, res) => {
 
 /**
  * Reads date from the ZIP filename (Zip contains the newest of both dates)
- * and converts it to a number. If the filename contained a date "2019-09-03",
- * sends back a number 20190903
+ * and converts it to a number. If the filename contained a date "YYYY-MM-DD",
+ * sends back a number YYYYMMDD
  */
 app.get('/get-latest-date-number', (req, res) => {
 	try {
-		const date = scraper.get_date_number("ZIP");
+		const date = scraper.getDateNumber("ZIP");
 		res.status(200).json({
 			"date-number": date,
 		});
@@ -59,7 +60,6 @@ app.get('/get-latest-date-number', (req, res) => {
 		res.status(500).end("Internal server error");
 	}
 });
-
 
 /**
  * Manually check if files are outdated
