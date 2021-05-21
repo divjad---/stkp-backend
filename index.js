@@ -9,6 +9,10 @@ const cron = require('node-cron');
 
 const scraper = require("./scrape");
 
+app.get('/', (req, res) => {
+    res.end("STKP backend");
+});
+
 /**
  * Accepts a query parameter
  */
