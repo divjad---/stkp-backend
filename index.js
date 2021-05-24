@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '5000';
 
 const fs = require('fs');
 const path = require('path');
@@ -9,7 +9,7 @@ const cron = require('node-cron');
 
 const scraper = require("./scrape");
 
-const version = "v1.01"
+const version = "v1.02"
 
 app.get('/', (req, res) => {
     res.end("STKP backend " + version);
