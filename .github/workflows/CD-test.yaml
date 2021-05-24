@@ -1,0 +1,20 @@
+name: remote ssh command
+
+on: # Kdaj se začne izvajanje delovnega toka?
+  push:
+    branches:
+      - master # Ob vsaki uveljavitvi na veji produkcijsko-okolje.
+
+jobs:
+  build:
+    runs-on: # Okolje, v katerem se testi izvedejo.
+      - ubuntu-latest
+    steps: # Posamezni koraki testiranja.
+      - name: execute remote ssh command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            whoami
