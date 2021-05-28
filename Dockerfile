@@ -16,7 +16,8 @@ RUN npm install
 
 # Kopiraj izvorno kodo aplikacije
 COPY . .
+COPY ./KT.gpx downloads/KT.gpx
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD [ "node", "index.js" ]

@@ -88,7 +88,7 @@ async function updateFiles(etape, stkpDate, callback){
             // scrape page for gpx href
             const dl_link = await visitEtapaAndGetLink(etape[i].href);
             // download the gpx and put it into json
-            etape[i].file = await downloadFile(dl_link, `Etapa_${i + 1}.gpx`);
+            await downloadFile(dl_link, `Etapa_${i + 1}.gpx`);
         }
 
         // finally write the file as json
@@ -159,9 +159,10 @@ function getEtape($) {
         const href = $(fields[0]).find('a').attr('href');
         const content = $(fields[1]).text();
         const category = $(fields[2]).text();
+        const filename = `Etapa_${ix + 1}.gpx`
 
         // push object into etape array
-        etape.push({name: naslov, href: href, desc: content, category: category});
+        etape.push({name: naslov, href: href, desc: content, category: category, file: filename});
     });
 
     return etape;

@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 
-const port = '5000';
+let port = 5000;
 
 const fs = require('fs');
 const path = require('path');
@@ -43,16 +43,11 @@ app.get('/get-latest-date', (req, res) => {
         let filename = scraper.getFullFilename("ZIP");
         const filePath = path.join(__dirname, scraper.dl_location + filename);
 
-        if (fs.existsSync(filePath)) {
-            const date = filename.split(/[_.]/)[1];
-            res.status(200).json({
-                "date": date,
-            });
-        }else{
-            res.status(404).json({
-                "date": null,
-            });
-        }
+        const exists = fs.existsSync(filePath);
+
+        res.status(exists ? 200 : 404).json({
+            "date": exists ? filename.split(/[_.]/)[1] : null,
+        });
 	} catch (e) {
 		console.log(e);
 		res.status(500).end("Internal server error");
